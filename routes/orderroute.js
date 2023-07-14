@@ -35,6 +35,15 @@ OrderRoute.post("/add", async (req, res) => {
     }
 })
 
+OrderRoute.delete('/', async (req, res) => {
+    try {
+        await Order.deleteMany();
+        res.send("All items deleted from cart");
+    } catch (err) {
+        res.send({ "err": "Something went wrong" });
+    }
+});
+
 OrderRoute.patch('/:id', async (req, res) => {
     const id = req.params.id;
     const payload = req.body;
